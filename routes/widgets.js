@@ -9,9 +9,9 @@ var Server = mongo.Server,
     db.open(function(err, db) {
         if(!err) {
                 console.log("Connected to 'widgetsdb' database");
-                db.collection('widgets', {strict:true}, function(err, collection) {
+                db.collection('widgetData', {strict:true}, function(err, collection) {
                             if (err) {
-                                            console.log("The 'widgets' collection doesn't exist. Creating it with sample data...");
+                                            console.log("The 'widgetData' collection doesn't exist. Creating it with sample data...");
                                             populateDB();
                                         }
                         });
@@ -19,7 +19,7 @@ var Server = mongo.Server,
     });
 
 exports.findAll = function(req, res) {
-    db.collection('widgets', function(err, collection) {
+    db.collection('widgetData', function(err, collection) {
         collection.find().toArray(function(err, items) {
             res.send(items);
             console.log(items);
@@ -30,7 +30,7 @@ exports.findAll = function(req, res) {
 exports.findById = function(req,res){
     var id = req.params.id;
     console.log('Retrieving widget: ' + id);
-    db.collection('widgets', function(err, collection) {
+    db.collection('widgetData', function(err, collection) {
         collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
             res.send(item);
             console.log(item);
@@ -40,17 +40,17 @@ exports.findById = function(req,res){
 
 exports.deleteWidget = function(req, res) {
     var id = req.params.id;
+    var widgetid = req.params.widgetid;
+    console.log('id ko = '+ widgetid);
     console.log('Deleting widget: ' + id);
-    db.collection('widgets', function(err, collection) {
-        collection.remove({'_id':new BSON.ObjectID(id)}, {safe:true}, function(err, result) {
-            if (err) {
-                res.send({'error':'An error has occurred - ' + err});
-            } else {
-                console.log('' + result + ' document(s) deleted');
-                res.send(req.body);
-
-            }
-        });
+    db.collection('widgetData', function(err, collection) {
+        // collection.update({ 'userid' : parseInt(id) }, { $pull: { 'widgets' : parseInt(widgetid) }});
+        collection.update({ 'userid': parseInt(id)}, { $pull: { 'widgets' : parseInt(widgetid) }}, function(err,result){
+              res.send(result);
+              if(err){
+                res.send(err);
+              }
+            });
     });
 }
 
@@ -80,7 +80,7 @@ var populateDB = function() {
 
     }];
 
-    db.collection('widgets', function (err, collection){
+    db.collection('widgetData', function (err, collection){
         collection.insert(widgets,{safe:true}, function(err,result){})
     });
 };

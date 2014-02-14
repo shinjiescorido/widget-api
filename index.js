@@ -25,7 +25,7 @@ var express = require('express'),
 
 app.get('/widgets', widgets.findAll);
 app.get('/widgets/:id', widgets.findById);
-app.delete('/widgets/:id', widgets.deleteWidget);
+app.delete('/widgets/:id/:widgetid', widgets.deleteWidget);
 
  app.listen(3001);
  console.log('express running at http://localhost:%d', 3001);
