@@ -34,7 +34,7 @@ exports.deleteWidget = function(req, res) {
     });
 }
 
-var populateDB = function() {
+exports.populateDB = function() {
 
     // var widgets = [1,2,3,4,5,6,7,8,9]
 
