@@ -33,8 +33,13 @@ db.open( function ( err, db ) {
 			}
 		} );
 
+		db.collection( 'groupActivity', { strict: true }, function( err, collection ) {
+			if ( err ) {
+				console.log( "The 'groupActivity' collection doesn't exist. Creating it with sample data..." );
+				groupActivity.populateDB();
+			}
+		} );
 	}
-
 } );
 
 app.configure( function () {
@@ -66,7 +71,12 @@ app.get( '/widgets/:id', widgets.findById );
 app.delete( '/widgets/:id/:widgetid', widgets.deleteWidget );
 
 app.get( '/groupactivity', groupActivity.findAll );
+
 app.get( '/yourProfile', yourProfile.findAll );
+
+app.post( '/groupactivity', groupActivity.addActivity );
+app.delete( '/groupactivity/:id', groupActivity.deleteActivity );
+
 
 app.listen( 3001 );
 console.log( 'express running at http://localhost:%d', 3001 );
