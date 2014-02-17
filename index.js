@@ -78,5 +78,5 @@ app.post( '/groupactivity', groupActivity.addActivity );
 app.delete( '/groupactivity/:id', groupActivity.deleteActivity );
 
 
-app.listen( 3001 );
-console.log( 'express running at http://localhost:%d', 3001 );
+app.listen( 8889 );
+console.log( 'express running at http://localhost:%d', 8889 );
