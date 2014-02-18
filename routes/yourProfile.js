@@ -2,16 +2,6 @@
 
 var sDatabase = 'yourProfile';
 
-exports.findAll = function ( req, res ) {
-
-	db.collection( sDatabase, function ( err, collection ) {
-		collection.find().toArray( function ( err, items ) {
-			res.send( items );
-			console.log( items );
-		} );
-	} );
-};
-
 function calculatePercentage () {
 
 	var nPercentage = 75;
@@ -25,6 +15,50 @@ function getDescription ( nPercentage ) {
 
 	return sDescription;
 };
+
+exports.findAll = function ( req, res ) {
+
+	db.collection( sDatabase, function ( err, collection ) {
+		collection.find().toArray( function ( err, items ) {
+			res.send( items );
+			console.log( items );
+		} );
+	} );
+};
+
+//curl -X PUT -d "percent=75" localhost:9090/updatePercentage/75
+exports.updatePercentage = function( req, res ) {
+
+	db.collection( sDatabase, function ( err, collection ) {
+		var id = req.params.id;
+		var percent = req.body.percent;
+		percent = parseInt(percent);
+
+		if(isNaN(percent)) {
+			percent = 25; //default
+		}
+
+		var yourProfile =
+		{
+			percentage : percent,
+			description : getDescription( percent )
+		};
+
+		console.log(' new values :');
+		console.log(yourProfile);
+
+		collection.update( { percentage : parseInt(id) }, yourProfile, { safe: true }, function( err, doc ) {
+			if (err) {
+				console.log(err);
+				res.send(404, err);
+			} else {
+				res.send(200, doc);
+				console.log( 'success', doc );
+			}
+		} );
+
+	});
+}
 
 exports.populateDB = function () {
 

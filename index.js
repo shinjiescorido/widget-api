@@ -73,10 +73,11 @@ app.delete( '/widgets/:id/:widgetid', widgets.deleteWidget );
 app.get( '/groupactivity', groupActivity.findAll );
 
 app.get( '/yourProfile', yourProfile.findAll );
+app.put( '/updatePercentage/:id', yourProfile.updatePercentage );
 
 app.post( '/groupactivity', groupActivity.addActivity );
 app.delete( '/groupactivity/:id', groupActivity.deleteActivity );
 
 
-app.listen( 8889 );
+app.listen( 3001 );
 console.log( 'express running at http://localhost:%d', 8889 );
