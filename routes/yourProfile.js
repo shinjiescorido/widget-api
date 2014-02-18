@@ -1,6 +1,9 @@
+'use strict';
+
 var sDatabase = 'yourProfile';
 
 exports.findAll = function ( req, res ) {
+
 	db.collection( sDatabase, function ( err, collection ) {
 		collection.find().toArray( function ( err, items ) {
 			res.send( items );
@@ -9,34 +12,30 @@ exports.findAll = function ( req, res ) {
 	} );
 };
 
+function calculatePercentage () {
+
+	var nPercentage = 75;
+
+	return nPercentage
+};
+
+function getDescription ( nPercentage ) {
+
+	var sDescription = 'Your profile is almost complete! The more we know about you, the more relevant the content we show you will be';
+
+	return sDescription;
+};
+
 exports.populateDB = function () {
 
-	var yourProfile = [ {
+	var nPercentage = calculatePercentage();
 
-		id: 1,
-		description: 'Your profile is almost complete! The more we know about you, the more relevant the content we show you will be',
-		percentage: 75
+	var yourProfile = {
 
-	}, {
+		description: getDescription( nPercentage ) ,
+		percentage: nPercentage
 
-
-		id: 2,
-		description: 'Your profile is almost complete! The more we know about you, the more relevant the content we show you will be',
-		percentage: 50
-
-	}, {
-
-		id: 3,
-		description: 'Your profile is almost complete! The more we know about you, the more relevant the content we show you will be',
-		percentage: 25
-
-	}, {
-
-		id: 4,
-		description: 'Your profile is almost complete! The more we know about you, the more relevant the content we show you will be',
-		percentage: 1
-
-	} ];
+	} ;
 
 	db.collection( sDatabase, function ( err, collection ) {
 		collection.insert( yourProfile, {
