@@ -43,7 +43,7 @@ exports.findAll = function ( req, res ) {
 	} );
 };
 
-//curl -X PUT -d "percent=75" localhost:9090/updatePercentage/75
+//curl -X PUT -d "percent=75" localhost:8889/updatePercentage/75
 exports.updatePercentage = function( req, res ) {
 
 	db.collection( sDatabase, function ( err, collection ) {
@@ -75,7 +75,7 @@ exports.updatePercentage = function( req, res ) {
 		} );
 
 	});
-}
+};
 
 exports.populateDB = function () {
 

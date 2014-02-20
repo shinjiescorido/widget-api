@@ -76,11 +76,14 @@ app.configure( 'production', function () {
 
 app.get( '/widgets', widgets.findAll );
 app.get( '/widgets/:id', widgets.findById );
+app.put( '/updateWidgets/:id', widgets.updateWidgets );
 app.delete( '/widgets/:id/:widgetid', widgets.deleteWidget );
+
 
 app.get( '/groupactivity', groupActivity.findAll );
 
 app.get( '/yourProfile', yourProfile.findAll );
+app.put( '/updatePercentage/:id', yourProfile.updatePercentage );
 
 app.get( '/whatsnew', whatsNew.findAll );
 app.delete( '/whatsnew/:id', whatsNew.deleteActivity );

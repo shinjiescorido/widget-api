@@ -35,28 +35,61 @@ exports.deleteWidget = function(req, res) {
               }
             });
     });
-}
+};
+
+//curl -X PUT -d "widgets=groupActivity, yourProfile" localhost:8889/updateUserWidgets/1
+//widgets should be comma separated
+exports.updateWidgets = function( req, res ) {
+
+console.log('update widget');
+
+  db.collection( 'widgetData' , function ( err, collection ) {
+    var id = parseInt(req.params.id);
+    var sWidgets = req.body.widgets;
+
+    var arWidget = sWidgets.split(' ');
+    var oWidgets =
+    {
+      id : id,
+      widgets :arWidget
+    };
+
+    console.log(' new values :');
+    console.log(oWidgets);
+
+    collection.update( { id : id }, oWidgets, { safe: true }, function( err, doc ) {
+      if (err) {
+        console.log(err);
+        res.send(404, err);
+      } else {
+        res.send(200, doc);
+        console.log( 'success', doc );
+      }
+    } );
+
+  });
+};
 
 exports.populateDB = function() {
 
     var widgets = [
     {
-       userid : 1,
+       id : 1,
        widgets : ['groupActivity']
 
     },
     {
-       userid : 2,
+       id : 2,
        widgets : ['groupActivity', 'yourProfile', 'whatsnew']
 
     },
     {
-       userid : 3,
+       id : 3,
        widgets : ['groupActivity', 'yourProfile', 'whatsnew']
 
     },
     {
-       userid : 4,
+       id : 4,
        widgets : ['groupActivity', 'yourProfile', 'whatsnew']
 
     }];
