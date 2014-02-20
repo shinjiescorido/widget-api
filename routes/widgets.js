@@ -1,3 +1,6 @@
+var mongo = require( 'mongodb' );
+var BSON = mongo.BSONPure;
+
 exports.findAll = function(req, res) {
     db.collection('widgetData', function(err, collection) {
         collection.find().toArray(function(err, items) {
@@ -36,27 +39,25 @@ exports.deleteWidget = function(req, res) {
 
 exports.populateDB = function() {
 
-    // var widgets = [1,2,3,4,5,6,7,8,9]
-
     var widgets = [
     {
        userid : 1,
-       widgets : [1,3,5]
+       widgets : ['groupActivity']
 
     },
     {
        userid : 2,
-       widgets : [1,2,3]
+       widgets : ['groupActivity', 'yourProfile', 'whatsnew']
 
     },
     {
        userid : 3,
-       widgets : [3,4,5,6]
+       widgets : ['groupActivity', 'yourProfile', 'whatsnew']
 
     },
     {
        userid : 4,
-       widgets : [7,8,9]
+       widgets : ['groupActivity', 'yourProfile', 'whatsnew']
 
     }];
 
