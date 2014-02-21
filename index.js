@@ -11,6 +11,7 @@ var widgets         = require( './routes/widgets' );
 var groupActivity   = require( './routes/groupActivity' );
 var yourProfile     = require( './routes/yourProfile' );
 var learningTargets = require( './routes/learningTargets' );
+var whatsNew 		= require( './routes/whatsNew' );
 
 db = new Db( 'widgetsdb', server );
 db.open( function ( err, db ) {
@@ -38,6 +39,13 @@ db.open( function ( err, db ) {
 			if ( err ) {
 				console.log( "The 'groupActivity' collection doesn't exist. Creating it with sample data..." );
 				groupActivity.populateDB();
+			}
+		} );
+		
+		db.collection( 'whatsNew', { strict: true }, function( err, collection ) {
+			if ( err ) {
+				console.log( "The 'whatsNewList' collection doesn't exist. Creating it with sample data..." );
+				whatsNew.populateDB();
 			}
 		} );
 	}
@@ -79,6 +87,10 @@ app.delete( '/groupactivity/:id', groupActivity.deleteActivity );
 // Your Profile
 app.get( '/yourProfile', yourProfile.findAll );
 
+// Whats New
+app.get( '/whatsnew', whatsNew.findAll );
+app.delete( '/whatsnew/:id', whatsNew.deleteActivity );
+
 // Learning Targets
 app.get( '/learningTargets', learningTargets.findAll );
 app.get( '/learningTargets/populateDB', learningTargets.populateDB );
@@ -86,5 +98,5 @@ app.get( '/learningTargets/deleteAll', learningTargets.deleteAll );
 app.post( '/learningTargets', learningTargets.addActivity );
 app.delete( '/learningTargets/:id', learningTargets.deleteActivity );
 
-app.listen( 3001 );
-console.log( 'express running at http://localhost:%d', 3001 );
+app.listen( 8889 );
+console.log( 'express running at http://localhost:%d', 8889 );

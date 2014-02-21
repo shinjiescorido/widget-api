@@ -55,7 +55,7 @@ db.collection('sessions', function(err, collection) {
 exports.populateDB = function() {
 	var activities = [
 		{
-			"content" : "<a href=\"\">Classroom Management</a>",
+			"content" : "Classroom Management",
 			"date"    : "2014-02-17T06:26:57.036Z",
 			"type"    : "video",
 			"url"     : "#",
@@ -63,7 +63,7 @@ exports.populateDB = function() {
 			"_id"     : "5301abb18719792110ef018u"
 		},
 		{
-			"content" : "<a href=\"\">Assessment</a>",
+			"content" : "Assessment",
 			"date"    : "2014-02-17T06:27:05.062Z",
 			"type"    : "video",
 			"url"     : "#",
@@ -71,7 +71,7 @@ exports.populateDB = function() {
 			"_id"     : "5301abb98719792110ef018v"
 		},
 		{
-			"content" : "<a href=\"\">Special Education</a>",
+			"content" : "Special Education",
 			"date"    : "2014-02-17T06:27:59.746Z",
 			"type"    : "video",
 			"url"     : "#",
@@ -79,7 +79,7 @@ exports.populateDB = function() {
 			"_id"     : "5301abef8719792110ef018w"
 		},
 		{
-			"content" : "<a href = \"#\">Equity</a>",
+			"content" : "Equity",
 			"date"    : "2014-02-17T06:28:46.585Z",
 			"type"    : "video",
 			"url"     : "#",
@@ -87,7 +87,7 @@ exports.populateDB = function() {
 			"_id"     : "5301ac1e8719792110ef017x"
 		},
 		{
-			"content" : "<a href = \"#\">Compliance</a>",
+			"content" : "Compliance",
 			"date"    : "2014-02-17T06:28:56.294Z",
 			"type"    : "video",
 			"url"     : "#",
@@ -95,7 +95,7 @@ exports.populateDB = function() {
 			"_id"     : "5301ac288719792110ef0112"
 		},
 		{
-			"content" : "<a href = \"#\">ELL</a>",
+			"content" : "ELL",
 			"date"    : "2014-02-17T06:28:56.294Z",
 			"type"    : "video",
 			"url"     : "#",
@@ -103,7 +103,7 @@ exports.populateDB = function() {
 			"_id"     : "5301ac288719792110ef0192"
 		},
 		{
-			"content" : "<a href = \"#\">Instructional Strategies</a>",
+			"content" : "Instructional Strategies",
 			"date"    : "2014-02-17T06:28:56.294Z",
 			"type"    : "video",
 			"url"     : "#",
@@ -113,6 +113,6 @@ exports.populateDB = function() {
 	];
 
 	db.collection( whatsNewList, function ( err, collection ) {
-	    collection.insert( activities, { safe: true }, function( err, result ) { } )
+		collection.insert( activities, { safe: true }, function( err, result ) { } )
 	});
 };
