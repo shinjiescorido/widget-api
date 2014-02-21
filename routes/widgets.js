@@ -12,10 +12,12 @@ exports.findAll = function(req, res) {
 
 exports.findById = function(req,res){
     var id = req.params.id;
+console.log( 'id ' + id );
     console.log('Retrieving widget: ' + id);
     db.collection('widgetData', function(err, collection) {
         collection.findOne({'id': parseInt(id)}, function(err, item) {
             res.send(item);
+            console.log('yami');
             console.log(item);
         });
     });
@@ -37,7 +39,8 @@ exports.deleteWidget = function(req, res) {
     });
 };
 
-//curl -X PUT -d "widgets=groupActivity, yourProfile" localhost:8889/updateUserWidgets/1
+
+//curl -X PUT -d "widgets=groupActivity, yourProfile" localhost:8889/updateWidgets/1
 //widgets should be comma separated
 exports.updateWidgets = function( req, res ) {
 
@@ -45,17 +48,15 @@ console.log('update widget');
 
   db.collection( 'widgetData' , function ( err, collection ) {
     var id = parseInt(req.params.id);
-    var sWidgets = req.body.widgets;
 
-    var arWidget = sWidgets.split(' ');
+    var oWidgets = null;
+
+    var arWidget = req.body.widgets;
     var oWidgets =
     {
       id : id,
       widgets :arWidget
     };
-
-    console.log(' new values :');
-    console.log(oWidgets);
 
     collection.update( { id : id }, oWidgets, { safe: true }, function( err, doc ) {
       if (err) {

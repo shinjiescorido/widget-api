@@ -51,16 +51,27 @@ db.open( function ( err, db ) {
 	}
 } );
 
+var allowCrossDomain = function(req, res, next) {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+	res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+
+	// intercept OPTIONS method
+	if ('OPTIONS' == req.method) {
+	  res.send(200);
+	}
+	else {
+	  next();
+	}
+};
+app.use(allowCrossDomain);
+
 app.configure( function () {
 	app.use( express.methodOverride() );
 	app.use( express.bodyParser() );
-	app.use( function ( req, res, next ) {
-		res.header( "Access-Control-Allow-Origin", "*" );
-		res.header( "Access-Control-Allow-Headers", "X-Requested-With" );
-		next();
-	} );
 	app.use( app.router );
 } );
+
 
 app.configure( 'development', function () {
 	app.use( express.static( __dirname + '/public' ) );
@@ -75,8 +86,10 @@ app.configure( 'production', function () {
 	app.use( express.errorHandler() );
 } );
 
+
 app.get( '/widgets', widgets.findAll );
 app.get( '/widgets/:id', widgets.findById );
+app.put( '/widgets/:id', widgets.updateWidgets );
 app.delete( '/widgets/:id/:widgetid', widgets.deleteWidget );
 
 // Group Activity
@@ -86,6 +99,7 @@ app.delete( '/groupactivity/:id', groupActivity.deleteActivity );
 
 // Your Profile
 app.get( '/yourProfile', yourProfile.findAll );
+app.put( '/updatePercentage/:id', yourProfile.updatePercentage );
 
 // Whats New
 app.get( '/whatsnew', whatsNew.findAll );
