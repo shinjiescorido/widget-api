@@ -14,7 +14,7 @@ exports.findById = function(req,res){
     var id = req.params.id;
     console.log('Retrieving widget: ' + id);
     db.collection('widgetData', function(err, collection) {
-        collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
+        collection.findOne({'id': parseInt(id)}, function(err, item) {
             res.send(item);
             console.log(item);
         });
@@ -28,7 +28,7 @@ exports.deleteWidget = function(req, res) {
     console.log('Deleting widget: ' + id);
     db.collection('widgetData', function(err, collection) {
         // collection.update({ 'userid' : parseInt(id) }, { $pull: { 'widgets' : parseInt(widgetid) }});
-        collection.update({ 'userid': parseInt(id)}, { $pull: { 'widgets' : parseInt(widgetid) }}, function(err,result){
+        collection.update({ 'id': parseInt(id)}, { $pull: { 'widgets' : parseInt(widgetid) }}, function(err,result){
               res.send(result);
               if(err){
                 res.send(err);
