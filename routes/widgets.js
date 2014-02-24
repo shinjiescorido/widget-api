@@ -12,12 +12,10 @@ exports.findAll = function(req, res) {
 
 exports.findById = function(req,res){
     var id = req.params.id;
-console.log( 'id ' + id );
     console.log('Retrieving widget: ' + id);
     db.collection('widgetData', function(err, collection) {
         collection.findOne({'id': parseInt(id)}, function(err, item) {
             res.send(item);
-            console.log('yami');
             console.log(item);
         });
     });
@@ -44,7 +42,7 @@ exports.deleteWidget = function(req, res) {
 //widgets should be comma separated
 exports.updateWidgets = function( req, res ) {
 
-console.log('update widget');
+  console.log('update widget');
 
   db.collection( 'widgetData' , function ( err, collection ) {
     var id = parseInt(req.params.id);
@@ -58,13 +56,15 @@ console.log('update widget');
       widgets :arWidget
     };
 
+    console.log('new values');
+    console.log(oWidgets);
     collection.update( { id : id }, oWidgets, { safe: true }, function( err, doc ) {
       if (err) {
         console.log(err);
         res.send(404, err);
       } else {
-        res.send(200, doc);
         console.log( 'success', doc );
+        res.send( JSON.stringify(oWidgets) );
       }
     } );
 
