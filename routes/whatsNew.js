@@ -3,7 +3,7 @@ var ObjectID = require('mongodb').ObjectID;
 
 exports.findAll = function( req, res ) {
 	db.collection( whatsNewList, function( err, collection ) {
-		collection.find().toArray( function( err, items ) {
+		collection.find().sort({date:-1}).toArray( function( err, items ) {
 			res.send( items );
 			console.log( 'Fetching groups' );
 		});
