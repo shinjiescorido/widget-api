@@ -52,14 +52,14 @@ db.collection('sessions', function(err, collection) {
 });
 }
 exports.addWhatsNew = function(req,res) {
+var _title = (req.params.title)?req.params.title:'Sample Content';
 	var _activities = [
 		{
-			"content" : "Class Activities",
-			"date"    : "2014-02-28T06:26:57.036Z",
+			"content" : _title,
+			"date"    : new Date(),
 			"type"    : "video",
 			"url"     : "#",
-			"imgIcon" : "http://builtbyhq.com/projects/sinet/img/green-play.png",
-			"_id"     : "5301abb18719792110ef016t"
+			"imgIcon" : "http://builtbyhq.com/projects/sinet/img/green-play.png"
 		}
 		];
 

@@ -104,7 +104,7 @@ app.put( '/updatePercentage/:id', yourProfile.updatePercentage );
 // Whats New
 app.get( '/whatsnew', whatsNew.findAll );
 app.delete( '/whatsnew/:id', whatsNew.deleteActivity );
-app.get( '/addwhatsnew', whatsNew.addWhatsNew );
+app.get( '/addwhatsnew/:title', whatsNew.addWhatsNew );
 
 // Learning Targets
 app.get( '/learningTargets', learningTargets.findAll );
