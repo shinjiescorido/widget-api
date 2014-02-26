@@ -103,7 +103,8 @@ app.put( '/updatePercentage/:id', yourProfile.updatePercentage );
 
 // Whats New
 app.get( '/whatsnew', whatsNew.findAll );
-app.delete( '/whatsnew/:id', whatsNew.deleteActivity );
+app.get( '/deletewhatsnew/:id', whatsNew.deleteWhatsNew );
+app.get( '/deletewhatsnews/:id', whatsNew.deleteWhatsNewViaString);
 app.get( '/addwhatsnew/:title', whatsNew.addWhatsNew );
 
 // Learning Targets

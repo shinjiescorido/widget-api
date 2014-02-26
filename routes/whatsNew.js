@@ -33,24 +33,41 @@ exports.addActivity = function( req, res) {
 }
 
 //curl -X DELETE 'http://localhost:3001/groupactivity/'
-exports.deleteActivity = function( req, res ) {
-	/*db.collection( whatsNewList, function ( err, collection ) {
+exports.deleteWhatsNew = function ( req, res ) {
+	db.collection( whatsNewList, function ( err, collection ) {
 		var id = req.params.id;
-		collection.remove( { _id: new ObjectID( id ) }, 1, function( err, doc ) {
-			if (err) {
-				console.log(err);
-				res.send(404, err);
+
+		collection.remove( { _id: new ObjectID( id ) }, 1, function ( err, doc ) {
+			if ( err ) {
+				console.log( err );
+				res.send( 404, err );
 			} else {
-				console.log(doc.toArray);
-				console.log(id);
-				res.send(200, doc);
+				console.log( doc );
+				console.log( id );
+				res.send( 200, 'deleted..' );
 			}
-		} )
-	});*/
-db.collection('sessions', function(err, collection) {
-    collection.remove({});
-});
-}
+		} );
+	} );
+};
+
+exports.deleteWhatsNewViaString = function ( req, res ) {
+	db.collection( whatsNewList, function ( err, collection ) {
+		var id = req.params.id;
+
+		collection.remove( { _id: id }, 1, function ( err, doc ) {
+			if ( err ) {
+				console.log( err );
+				res.send( 404, err );
+			} else {
+				console.log( doc );
+				console.log( id );
+				res.send( 200, 'deleted..' );
+			}
+		} );
+	} );
+};
+
+
 exports.addWhatsNew = function(req,res) {
 var _title = (req.params.title)?req.params.title:'Sample Content';
 	var _activities = [
@@ -77,62 +94,55 @@ var _title = (req.params.title)?req.params.title:'Sample Content';
 };
 exports.populateDB = function() {
 	var activities = [
-		{
-			"content" : "Classroom Management",
-			"date"    : "2014-02-17T06:26:57.036Z",
-			"type"    : "video",
-			"url"     : "#",
-			"imgIcon" : "http://builtbyhq.com/projects/sinet/img/green-play.png",
-			"_id"     : "5301abb18719792110ef018u"
-		},
-		{
-			"content" : "Assessment",
-			"date"    : "2014-02-17T06:27:05.062Z",
-			"type"    : "video",
-			"url"     : "#",
-			"imgIcon" : "http://builtbyhq.com/projects/sinet/img/green-play.png",
-			"_id"     : "5301abb98719792110ef018v"
-		},
-		{
-			"content" : "Special Education",
-			"date"    : "2014-02-17T06:27:59.746Z",
-			"type"    : "video",
-			"url"     : "#",
-			"imgIcon" : "http://builtbyhq.com/projects/sinet/img/green-play.png",
-			"_id"     : "5301abef8719792110ef018w"
-		},
-		{
-			"content" : "Equity",
-			"date"    : "2014-02-17T06:28:46.585Z",
-			"type"    : "video",
-			"url"     : "#",
-			"imgIcon" : "http://builtbyhq.com/projects/sinet/img/green-play.png",
-			"_id"     : "5301ac1e8719792110ef017x"
-		},
-		{
-			"content" : "Compliance",
-			"date"    : "2014-02-17T06:28:56.294Z",
-			"type"    : "video",
-			"url"     : "#",
-			"imgIcon" : "http://builtbyhq.com/projects/sinet/img/green-play.png",
-			"_id"     : "5301ac288719792110ef0112"
-		},
-		{
-			"content" : "ELL",
-			"date"    : "2014-02-17T06:28:56.294Z",
-			"type"    : "video",
-			"url"     : "#",
-			"imgIcon" : "http://builtbyhq.com/projects/sinet/img/green-play.png",
-			"_id"     : "5301ac288719792110ef0192"
-		},
-		{
-			"content" : "Instructional Strategies",
-			"date"    : "2014-02-17T06:28:56.294Z",
-			"type"    : "video",
-			"url"     : "#",
-			"imgIcon" : "http://builtbyhq.com/projects/sinet/img/green-play.png",
-			"_id"     : "5301ac288719792110ef0194"
-		}
+  {
+    "content": "Classroom Management",
+    "date": "2014-02-17T06:26:57.036Z",
+    "type": "video",
+    "url": "#",
+    "imgIcon": "http://builtbyhq.com/projects/sinet/img/green-play.png"
+  },
+  {
+    "content": "Assessment",
+    "date": "2014-02-17T06:27:05.062Z",
+    "type": "video",
+    "url": "#",
+    "imgIcon": "http://builtbyhq.com/projects/sinet/img/green-play.png"
+  },
+  {
+    "content": "Special Education",
+    "date": "2014-02-17T06:27:59.746Z",
+    "type": "video",
+    "url": "#",
+    "imgIcon": "http://builtbyhq.com/projects/sinet/img/green-play.png"
+  },
+  {
+    "content": "Equity",
+    "date": "2014-02-17T06:28:46.585Z",
+    "type": "video",
+    "url": "#",
+    "imgIcon": "http://builtbyhq.com/projects/sinet/img/green-play.png"
+  },
+  {
+    "content": "Compliance",
+    "date": "2014-02-17T06:28:56.294Z",
+    "type": "video",
+    "url": "#",
+    "imgIcon": "http://builtbyhq.com/projects/sinet/img/green-play.png"
+  },
+  {
+    "content": "ELL",
+    "date": "2014-02-17T06:28:56.294Z",
+    "type": "video",
+    "url": "#",
+    "imgIcon": "http://builtbyhq.com/projects/sinet/img/green-play.png"
+  },
+  {
+    "content": "Instructional Strategies",
+    "date": "2014-02-17T06:28:56.294Z",
+    "type": "video",
+    "url": "#",
+    "imgIcon": "http://builtbyhq.com/projects/sinet/img/green-play.png"
+  }
 	];
 
 	db.collection( whatsNewList, function ( err, collection ) {
