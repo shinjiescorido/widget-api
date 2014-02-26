@@ -93,7 +93,7 @@ exports.populateDB = function ( req, res ) {
 			'date'       : '2014-02-17T06:27:05.062Z'
 		},
 		{
-			'content'    : 'Stage Three: Prompt Student Repsonse',
+			'content'    : 'Stage Thirty Seven: Prompt Student And Teacher Repsonse',
 			'url'        : '#',
 			'inProgress' : false,
 			'completion' : 0,
@@ -103,7 +103,7 @@ exports.populateDB = function ( req, res ) {
 
 	db.collection( learningTargetsList, function ( err, collection ) {
 		collection.insert( targets, { safe: true }, function ( err, result ) {
-			if ( err ) {
+		if ( err ) {
 				console.log( err );
 				res.send( 404, err );
 			} else {
