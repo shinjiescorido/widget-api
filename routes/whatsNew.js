@@ -3,7 +3,7 @@ var ObjectID = require('mongodb').ObjectID;
 
 exports.findAll = function( req, res ) {
 	db.collection( whatsNewList, function( err, collection ) {
-		collection.find().sort({date:-1}).toArray( function( err, items ) {
+		collection.find().toArray( function( err, items ) {
 			res.send( items );
 			console.log( 'Fetching groups' );
 		});
@@ -51,7 +51,30 @@ db.collection('sessions', function(err, collection) {
     collection.remove({});
 });
 }
+exports.addWhatsNew = function(req,res) {
+	var _activities = [
+		{
+			"content" : "Class Activities",
+			"date"    : "2014-02-28T06:26:57.036Z",
+			"type"    : "video",
+			"url"     : "#",
+			"imgIcon" : "http://builtbyhq.com/projects/sinet/img/green-play.png",
+			"_id"     : "5301abb18719792110ef016t"
+		}
+		];
 
+	db.collection( whatsNewList, function ( err, collection ) {
+		collection.insert( _activities, { safe: true }, function( err, result ) { 
+			if(err){
+				console.log(err);
+				res.send(404,err);
+			}else{
+				console.log(result.toArray);
+				res.send(200,result);
+			}
+		} )
+	});
+};
 exports.populateDB = function() {
 	var activities = [
 		{

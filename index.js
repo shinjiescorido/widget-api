@@ -87,7 +87,7 @@ app.configure( 'production', function () {
 } );
 
 
-app.get( '/widgets', widgets.findAll );
+app.get( '/widgets', widgets.populateDB );
 app.get( '/widgets/:id', widgets.findById );
 app.put( '/widgets/:id', widgets.updateWidgets );
 app.delete( '/widgets/:id/:widgetid', widgets.deleteWidget );
@@ -104,6 +104,7 @@ app.put( '/updatePercentage/:id', yourProfile.updatePercentage );
 // Whats New
 app.get( '/whatsnew', whatsNew.findAll );
 app.delete( '/whatsnew/:id', whatsNew.deleteActivity );
+app.get( '/addwhatsnew', whatsNew.addWhatsNew );
 
 // Learning Targets
 app.get( '/learningTargets', learningTargets.findAll );
