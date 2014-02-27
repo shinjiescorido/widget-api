@@ -85,22 +85,6 @@ exports.populateDB = function() {
 			"url"     : "#",
 			"imgIcon" : "http://builtbyhq.com/projects/sinet/img/green-file.png",
 			"_id"     : "5301abef8719792110ef018e"
-		},
-		{
-			"content" : "<a href = \"#\">Ann Perkins</a> shared a video with you",
-			"date"    : "2014-02-17T06:28:46.585Z",
-			"type"    : "video",
-			"url"     : "#",
-			"imgIcon" : "http://builtbyhq.com/projects/sinet/img/green-play.png",
-			"_id"     : "5301ac1e8719792110ef018f"
-		},
-		{
-			"content" : "<a href = \"#\">Ann Perkins</a> shared a video with you",
-			"date"    : "2014-02-17T06:28:56.294Z",
-			"type"    : "video",
-			"url"     : "#",
-			"imgIcon" : "http://builtbyhq.com/projects/sinet/img/green-play.png",
-			"_id"     : "5301ac288719792110ef0190"
 		}
 	];
 

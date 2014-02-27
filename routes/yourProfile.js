@@ -15,11 +15,11 @@ function getDescription ( nPercentage ) {
 
 	if( nPercentage >= 0 && nPercentage <= 25 ) {
 
-		sDescription = 'Please fill in data to your profile! The more we know about you, the more relevant the content we show you will be';
+		sDescription = 'Please fill in data to your profile!';
 
 	} else if (nPercentage > 25 && nPercentage <= 50 ) {
 
-		sDescription = 'Please complete your profile - its halfway complete! The more we know about you, the more relevant the content we show you will be';
+		sDescription = 'Please complete your profile - its halfway complete!';
 
 	} else if ( nPercentage > 50 && nPercentage <= 99 ) {
 
@@ -27,7 +27,7 @@ function getDescription ( nPercentage ) {
 
 	} else {
 
-		sDescription = 'Your profile is complete;'
+		sDescription = 'Your profile is complete!';
 	}
 
 	return sDescription;
