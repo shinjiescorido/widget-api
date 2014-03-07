@@ -56,7 +56,7 @@ db.open( function ( err, db ) {
 		db.collection( 'observationsOfMe', { strict: true }, function( err, collection ) {
 			if ( err ) {
 				console.log( "The 'observationsOfMe' collection doesn't exist. Creating it with sample data..." );
-				groupActivity.populateDB();
+				observationsOfMe.populateDB();
 			}
 		} );
 		db.collection( 'whatsHot', { strict: true }, function( err, collection ) {
