@@ -12,6 +12,7 @@ var groupActivity   = require( './routes/groupActivity' );
 var yourProfile     = require( './routes/yourProfile' );
 var learningTargets = require( './routes/learningTargets' );
 var whatsNew 		= require( './routes/whatsNew' );
+var observationsOfMe = require('./routes/observations-of-me');
 
 db = new Db( 'widgetsdb', server );
 db.open( function ( err, db ) {
@@ -41,11 +42,18 @@ db.open( function ( err, db ) {
 				groupActivity.populateDB();
 			}
 		} );
-		
+
 		db.collection( 'whatsNew', { strict: true }, function( err, collection ) {
 			if ( err ) {
 				console.log( "The 'whatsNewList' collection doesn't exist. Creating it with sample data..." );
 				whatsNew.populateDB();
+			}
+		} );
+
+		db.collection( 'observationsOfMe', { strict: true }, function( err, collection ) {
+			if ( err ) {
+				console.log( "The 'observationsOfMe' collection doesn't exist. Creating it with sample data..." );
+				groupActivity.populateDB();
 			}
 		} );
 	}
@@ -87,7 +95,7 @@ app.configure( 'production', function () {
 } );
 
 
-app.get( '/widgets', widgets.populateDB );
+app.get( '/widgets', widgets.findAll );
 app.get( '/widgets/:id', widgets.findById );
 app.put( '/widgets/:id', widgets.updateWidgets );
 app.delete( '/widgets/:id/:widgetid', widgets.deleteWidget );
@@ -96,6 +104,11 @@ app.delete( '/widgets/:id/:widgetid', widgets.deleteWidget );
 app.get( '/groupactivity', groupActivity.findAll );
 app.post( '/groupactivity', groupActivity.addActivity );
 app.delete( '/groupactivity/:id', groupActivity.deleteActivity );
+
+// Observations of Me
+app.get( '/observationsOfMe', observationsOfMe.findAll );
+app.post( '/observationsOfMe', observationsOfMe.addObservation );
+app.delete( '/observationsOfMe/:id', observationsOfMe.deleteObservation );
 
 // Your Profile
 app.get( '/yourProfile', yourProfile.findAll );
