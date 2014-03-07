@@ -11,8 +11,10 @@ var widgets         = require( './routes/widgets' );
 var groupActivity   = require( './routes/groupActivity' );
 var yourProfile     = require( './routes/yourProfile' );
 var learningTargets = require( './routes/learningTargets' );
-var whatsNew 		= require( './routes/whatsNew' );
+
+var whatsNew         = require( './routes/whatsNew' );
 var observationsOfMe = require('./routes/observations-of-me');
+var whatsHot         = require('./routes/whatsHot');
 
 db = new Db( 'widgetsdb', server );
 db.open( function ( err, db ) {
@@ -50,12 +52,20 @@ db.open( function ( err, db ) {
 			}
 		} );
 
+
 		db.collection( 'observationsOfMe', { strict: true }, function( err, collection ) {
 			if ( err ) {
 				console.log( "The 'observationsOfMe' collection doesn't exist. Creating it with sample data..." );
 				groupActivity.populateDB();
 			}
 		} );
+		db.collection( 'whatsHot', { strict: true }, function( err, collection ) {
+			if ( err ) {
+				console.log( "The 'whatsHotList' collection doesn't exist. Creating it with sample data..." );
+				whatsHot.populateDB();
+			}
+		} );
+
 	}
 } );
 
@@ -126,6 +136,11 @@ app.get( '/learningTargets/populateDB', learningTargets.populateDB );
 app.get( '/learningTargets/deleteAll', learningTargets.deleteAll );
 app.post( '/learningTargets', learningTargets.addActivity );
 app.delete( '/learningTargets/:id', learningTargets.deleteActivity );
+
+// Whats Hot
+app.get('/whatshot',whatsHot.findAll);
+app.get('/deletewhatshot/:id',whatsHot.deleteWhatsHot);
+app.get('/addwhatshot/:title',whatsHot.addWhatsHot);
 
 app.listen( 8889 );
 console.log( 'express running at http://localhost:%d', 8889 );
