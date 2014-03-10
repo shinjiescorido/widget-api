@@ -63,7 +63,7 @@ exports.deleteObservation = function( req, res ) {
 exports.populateDB = function() {
 	var activities = [
 		{
-			"content" : "<a href = \"#\">Charmae Awesome</a> send you an observation.",
+			"content" : "<a href = \"#\">Charmae Awesome</a> send you an observation",
 			"date"    : "2014-02-17T06:26:57.036Z",
 			"type"    : "video",
 			"url"     : "#",
@@ -71,7 +71,7 @@ exports.populateDB = function() {
 			"_id"     : "5301abb18719792110ef018a"
 		},
 		{
-			"content" : "<a href=\"\">Glenny Timberlake</a> send you an observation.",
+			"content" : "<a href=\"\">Glenny Timberlake</a> send you an observation",
 			"date"    : "2014-02-17T06:27:05.062Z",
 			"type"    : "group",
 			"url"     : "#",
@@ -79,7 +79,7 @@ exports.populateDB = function() {
 			"_id"     : "5301abb98719792110ef018b"
 		},
 		{
-			"content" : "<a href=\"\">Yami Licious</a> send you an observation.",
+			"content" : "<a href=\"\">Yami Licious</a> send you an observation",
 			"date"    : "2014-02-17T06:27:59.746Z",
 			"type"    : "file",
 			"url"     : "#",
