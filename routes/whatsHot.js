@@ -12,13 +12,13 @@ exports.findAll = function( req, res ) {
 
 exports.addWhatsHot = function ( req, res ) {
 	var _title = (req.params.title)?req.params.title:'Sample Content';
-//	var _views = (req.params.views)?req.params.views:0;
+	var _views = (req.params.views)?req.params.views:0;
 	var _activities = [
 		{
 			"title"  : _title,
 			"url"    : "#",
 			"imgUrl" : "http://builtbyhq.com/projects/sinet/img/green-play.png",
-			"views"  : "0"
+			"views"  : _views
 		}
 		];
 

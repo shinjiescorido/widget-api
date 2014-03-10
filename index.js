@@ -140,7 +140,7 @@ app.delete( '/learningTargets/:id', learningTargets.deleteActivity );
 // Whats Hot
 app.get('/whatshot',whatsHot.findAll);
 app.get('/deletewhatshot/:id',whatsHot.deleteWhatsHot);
-app.get('/addwhatshot/:title',whatsHot.addWhatsHot);
+app.get('/addwhatshot/:title/:views',whatsHot.addWhatsHot);
 
 app.listen( 8889 );
 console.log( 'express running at http://localhost:%d', 8889 );
