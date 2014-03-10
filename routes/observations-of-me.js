@@ -63,11 +63,11 @@ exports.deleteObservation = function( req, res ) {
 exports.populateDB = function() {
 	var activities = [
 		{
-			"content" : "<a href = \"#\">Charmae Brown</a> send you an observation.",
+			"content" : "<a href = \"#\">Charmae Awesome</a> send you an observation.",
 			"date"    : "2014-02-17T06:26:57.036Z",
 			"type"    : "video",
 			"url"     : "#",
-			"imgIcon" : "http://builtbyhq.com/projects/sinet/img/green-play.png",
+			"imgIcon" : "http://builtbyhq.com/projects/sinet/img/green-file.png",
 			"_id"     : "5301abb18719792110ef018a"
 		},
 		{
@@ -75,7 +75,7 @@ exports.populateDB = function() {
 			"date"    : "2014-02-17T06:27:05.062Z",
 			"type"    : "group",
 			"url"     : "#",
-			"imgIcon" : "http://builtbyhq.com/projects/sinet/img/green-play.png",
+			"imgIcon" : "http://builtbyhq.com/projects/sinet/img/green-file.png",
 			"_id"     : "5301abb98719792110ef018b"
 		},
 		{
@@ -83,7 +83,7 @@ exports.populateDB = function() {
 			"date"    : "2014-02-17T06:27:59.746Z",
 			"type"    : "file",
 			"url"     : "#",
-			"imgIcon" : "http://builtbyhq.com/projects/sinet/img/green-play.png",
+			"imgIcon" : "http://builtbyhq.com/projects/sinet/img/green-file.png",
 			"_id"     : "5301abef8719792110ef018e"
 		}
 	];
