@@ -81,17 +81,17 @@ exports.populateDB = function() {
     },
     {
        id : 2,
-       widgets : ['groupActivity', 'yourProfile', 'whatsnew']
+       widgets : ['groupActivity', 'yourProfile', 'whatsNew']
 
     },
     {
        id : 3,
-       widgets : ['groupActivity', 'yourProfile', 'whatsnew']
+       widgets : ['groupActivity', 'yourProfile', 'whatsNew']
 
     },
     {
        id : 4,
-       widgets : ['groupActivity', 'yourProfile', 'whatsnew']
+       widgets : ['groupActivity', 'yourProfile', 'whatsNew']
 
     }];
 
