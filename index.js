@@ -11,6 +11,7 @@ var widgets         = require( './routes/widgets' );
 var groupActivity   = require( './routes/groupActivity' );
 var yourProfile     = require( './routes/yourProfile' );
 var learningTargets = require( './routes/learningTargets' );
+var viewingProgress = require( './routes/viewingProgress' );
 
 var whatsNew         = require( './routes/whatsNew' );
 var observationsOfMe = require('./routes/observations-of-me');
@@ -129,6 +130,13 @@ app.get( '/whatsnew', whatsNew.findAll );
 app.get( '/deletewhatsnew/:id', whatsNew.deleteWhatsNew );
 app.get( '/deletewhatsnews/:id', whatsNew.deleteWhatsNewViaString);
 app.get( '/addwhatsnew/:title', whatsNew.addWhatsNew );
+
+// viewing progress
+app.get( '/viewingProgress', viewingProgress.findAll );
+app.get( '/viewingProgress/populateDB', viewingProgress.populateDB );
+app.get( '/viewingProgress/deleteAll', viewingProgress.deleteAll );
+app.post( '/viewingProgress', viewingProgress.addActivity );
+app.delete( '/viewingProgress/:id', viewingProgress.deleteActivity );
 
 // Learning Targets
 app.get( '/learningTargets', learningTargets.findAll );
