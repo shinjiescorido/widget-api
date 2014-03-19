@@ -135,8 +135,9 @@ app.get( '/addwhatsnew/:title', whatsNew.addWhatsNew );
 app.get( '/viewingProgress', viewingProgress.findAll );
 app.get( '/viewingProgress/populateDB', viewingProgress.populateDB );
 app.get( '/viewingProgress/deleteAll', viewingProgress.deleteAll );
-app.post( '/viewingProgress', viewingProgress.addActivity );
+//app.post( '/viewingProgress', viewingProgress.addActivity );
 app.delete( '/viewingProgress/:id', viewingProgress.deleteActivity );
+app.get( '/addviewingprogress/:title/:completion/:date', viewingProgress.addViewingProgress );
 
 // Learning Targets
 app.get( '/learningTargets', learningTargets.findAll );

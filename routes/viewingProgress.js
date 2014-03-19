@@ -1,5 +1,3 @@
-'use strict';
-
 var viewingProgressList = 'viewingProgress';
 var ObjectID = require('mongodb').ObjectID;
 
@@ -23,46 +21,45 @@ exports.findAll = function( req, res ) {
 
 //curl -d "content=<a href = \"#\">Ann Perkins</a> shared a video with you&type=video&url=#&imgIcon=http://builtbyhq.com/projects/sinet/img/green-play.png" http://localhost:3001/groupactivity
 
-exports.addActivity = function ( req, res) {
-	var activities = [
-		{
-			content : req.body.content,
-			date    : new Date(),
-			type    : req.body.type,
-			url     : req.body.url,
-			imgIcon : req.body.imgIcon
-		}
-	];
-	db.collection( viewingProgressList, function ( err, collection ) {
-		collection.insert( activities, { safe: true }, function ( err, doc ) {
-			if ( err ) {
-				console.log( err );
-				res.send( 404, err );
-			} else {
-				res.send( 200, doc );
-			}
-		} );
-	} );
-};
-
 //curl -X DELETE 'http://localhost:3001/groupactivity/'
 exports.deleteActivity = function ( req, res ) {
 	db.collection( viewingProgressList, function ( err, collection ) {
 		var id = req.params.id;
-
 		collection.remove( { _id: new ObjectID( id ) }, 1, function ( err, doc ) {
 			if ( err ) {
-				console.log( err );
 				res.send( 404, err );
 			} else {
-				console.log( doc );
-				console.log( id );
 				res.send( 200, doc );
 			}
 		} );
 	} );
 };
+exports.addViewingProgress = function ( req, res ) {
+	var _title = (req.params.title)?req.params.title:'Sample Content';
+	var _completion = (req.params.completion)?req.params.completion:0;
+	var _date = (req.params.date)?req.params.date:"2014-01-17T06:26:57.036Z";
+	var _activities = [
+		{
+			"content"      : _title,
+			"url"        : "#",
+			"inProgress" : true,
+			"completion" : _completion,
+			"date"       : _date
+		}
+		];
 
+db.collection( viewingProgressList, function ( err, collection ) {
+		collection.insert( _activities, { safe: true }, function( err, result ) {
+			if(err){
+				console.log(err);
+				res.send(404,err);
+			}else{
+				//console.log(result.toArray);
+				res.send(200,result);
+			}
+		} );
+	});
+};
 exports.deleteAll = function ( req, res ) {
 	db.collection( viewingProgressList, function ( err, collection ) {
 
@@ -86,11 +83,11 @@ exports.populateDB = function ( req, res ) {
 			'date'       : '2014-01-17T06:26:57.036Z'
 		},
 		{
-			'content'    : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore',
+			'content'    : 'Lorem ipsum incididunt',
 			'url'        : '#',
 			'inProgress' : true,
 			'completion' : 78,
-			'date'       : '2014-02-17T06:27:05.062Z'
+			'date'       : '2014-01-12T06:27:05.062Z'
 		},
 		{
 			'content'    : 'Stage Thirty Seven: Prompt Student And Teacher Repsonse',
@@ -112,6 +109,20 @@ exports.populateDB = function ( req, res ) {
 			'inProgress' : true,
 			'completion' : 100,
 			'date'       : '2014-02-4T06:27:59.746Z'
+		},
+		{
+			'content'    : 'Student And Teacher Repsonse 4',
+			'url'        : '#',
+			'inProgress' : true,
+			'completion' : 80,
+			'date'       : '2014-02-17T06:22:59.746Z'
+		},
+		{
+			'content'    : 'lorem ipsum dolor sit',
+			'url'        : '#',
+			'inProgress' : true,
+			'completion' : 97,
+			'date'       : '2014-03-18T06:27:59.746Z'
 		}
 	];
 
