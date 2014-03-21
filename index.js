@@ -7,12 +7,12 @@ var BSON    = mongo.BSONPure;
 var server  = new Server( 'localhost', 27017, {
 	auto_reconnect: true
 } );
-var widgets         = require( './routes/widgets' );
-var groupActivity   = require( './routes/groupActivity' );
-var yourProfile     = require( './routes/yourProfile' );
-var learningTargets = require( './routes/learningTargets' );
-var viewingProgress = require( './routes/viewingProgress' );
-
+var widgets          = require( './routes/widgets' );
+var groupActivity    = require( './routes/groupActivity' );
+var yourProfile      = require( './routes/yourProfile' );
+var learningTargets  = require( './routes/learningTargets' );
+var viewingProgress  = require( './routes/viewingProgress' );
+var process          = require( './routes/process' );
 var whatsNew         = require( './routes/whatsNew' );
 var observationsOfMe = require('./routes/observations-of-me');
 var whatsHot         = require('./routes/whatsHot');
@@ -77,10 +77,10 @@ var allowCrossDomain = function(req, res, next) {
 
 	// intercept OPTIONS method
 	if ('OPTIONS' == req.method) {
-	  res.send(200);
+	res.send(200);
 	}
 	else {
-	  next();
+	next();
 	}
 };
 app.use(allowCrossDomain);
@@ -138,6 +138,14 @@ app.get( '/viewingProgress/deleteAll', viewingProgress.deleteAll );
 //app.post( '/viewingProgress', viewingProgress.addActivity );
 app.delete( '/viewingProgress/:id', viewingProgress.deleteActivity );
 app.get( '/addviewingprogress/:title/:completion/:date', viewingProgress.addViewingProgress );
+
+// process widgets
+app.get( '/process', process.findAll );
+app.get( '/process/populateDB', process.populateDB );
+app.get( '/process/deleteAll', process.deleteAll );
+//app.post( '/viewingProgress', viewingProgress.addActivity );
+app.delete( '/process/:id', process.deleteActivity );
+app.get( '/addprocess/:title/:completion/:date', process.addViewingProgress );
 
 // Learning Targets
 app.get( '/learningTargets', learningTargets.findAll );
