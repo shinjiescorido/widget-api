@@ -60,6 +60,32 @@ db.collection( viewingProgressList, function ( err, collection ) {
 		} );
 	});
 };
+exports.addViewingProgressPost = function ( req, res ) {
+	var _title = (req.body.title)?req.body.title:'Sample Content';
+	var _completion = (req.body.completion)?req.body.completion:0;
+	var _date = (req.body.date)?req.body.date:"2014-01-17T06:26:57.036Z";
+	var _activities = [
+		{
+			"content"      : _title,
+			"url"        : "#",
+			"inProgress" : true,
+			"completion" : _completion,
+			"date"       : _date
+		}
+		];
+
+db.collection( viewingProgressList, function ( err, collection ) {
+		collection.insert( _activities, { safe: true }, function( err, result ) {
+			if(err){
+				console.log(err);
+				res.send(404,err);
+			}else{
+				//console.log(result.toArray);
+				res.send(200,result);
+			}
+		} );
+	});
+};
 exports.deleteAll = function ( req, res ) {
 	db.collection( viewingProgressList, function ( err, collection ) {
 

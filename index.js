@@ -135,7 +135,7 @@ app.get( '/addwhatsnew/:title', whatsNew.addWhatsNew );
 app.get( '/viewingProgress', viewingProgress.findAll );
 app.get( '/viewingProgress/populateDB', viewingProgress.populateDB );
 app.get( '/viewingProgress/deleteAll', viewingProgress.deleteAll );
-//app.post( '/viewingProgress', viewingProgress.addActivity );
+app.post( '/addviewingprogress', viewingProgress.addViewingProgressPost );
 app.delete( '/viewingProgress/:id', viewingProgress.deleteActivity );
 app.get( '/addviewingprogress/:title/:completion/:date', viewingProgress.addViewingProgress );
 
@@ -146,6 +146,7 @@ app.get( '/process/deleteAll', process.deleteAll );
 //app.post( '/viewingProgress', viewingProgress.addActivity );
 app.delete( '/process/:id', process.deleteActivity );
 app.get( '/addprocess/:title/:completion/:date', process.addViewingProgress );
+app.post( '/addprocess', process.addViewingProgressPost );
 
 // Learning Targets
 app.get( '/learningTargets', learningTargets.findAll );

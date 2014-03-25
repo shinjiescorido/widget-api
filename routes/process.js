@@ -35,9 +35,35 @@ exports.deleteActivity = function ( req, res ) {
 	} );
 };
 exports.addViewingProgress = function ( req, res ) {
+	console.log(req.params.title);
 	var _title = (req.params.title)?req.params.title:'Sample Content';
 	var _completion = (req.params.completion)?req.params.completion:0;
 	var _date = (req.params.date)?req.params.date:"2014-01-17T06:26:57.036Z";
+	var _activities = [
+		{
+			"content"      : _title,
+			"url"        : "#",
+			"inProgress" : true,
+			"completion" : _completion,
+			"date"       : _date
+		}
+		];
+db.collection( viewingProgressList, function ( err, collection ) {
+		collection.insert( _activities, { safe: true }, function( err, result ) {
+			if(err){
+				console.log(err);
+				res.send(404,err);
+			}else{
+				res.send(200,result);
+			}
+		} );
+	});
+};
+exports.addViewingProgressPost = function ( req, res ) {
+	console.log(req.body.title);
+	var _title = (req.body.title)?req.body.title:'Sample Content';
+	var _completion = (req.body.completion)?req.body.completion:0;
+	var _date = (req.body.date)?req.body.date:"2014-01-17T06:26:57.036Z";
 	var _activities = [
 		{
 			"content"      : _title,
